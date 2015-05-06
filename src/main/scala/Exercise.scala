@@ -65,13 +65,15 @@ object Exercise {
     println(chapter3.List.length(chapter3.List(1,2,3,4,5,6,7,8,9,10)))
     println(chapter3.List.length(chapter3.Nil))
 
-    // 3.9, 3.10
+    // 3.10, 3.11
     println(chapter3.List.sumFoldL(chapter3.List(1,2,3,4,5,6,7,8,9,10)))
     println(chapter3.List.productFoldL(chapter3.List(1,2,3,4,5)))
     println(chapter3.List.lengthFoldL(chapter3.List(1,2,3,4)))
     println(chapter3.List.lengthFoldL(chapter3.List(1,2,3,4,5,6,7,8,9,10)))
     println(chapter3.List.lengthFoldL(chapter3.Nil))
 
+    // 3.12
+    println(chapter3.List.reverse(chapter3.List(1,2,3,4,5,6,7,8,9,10)))
 
   }
 }

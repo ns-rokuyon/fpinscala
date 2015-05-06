@@ -97,8 +97,14 @@ object List{
   }
 
   // exercise3.11
+  // foldLeftを使ったsum,product,lengthの実装
   def sumFoldL(ns: List[Int]) = foldLeft(ns, 0)(_ + _)
   def productFoldL(ns: List[Double]) = foldLeft(ns, 1.0)(_ * _)
   def lengthFoldL[A](as: List[A]): Int = foldLeft(as, 0)((x, _) => 1 + x)
+
+  // exercise3.12
+  // 要素が逆に並んだリストを返す関数
+  def reverse[A](l: List[A]): List[A] = foldLeft(l, List[A]())((xs, x) => Cons(x, xs))
+  // List[A]がNilだとダメ
 }
 
