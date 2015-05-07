@@ -106,5 +106,22 @@ object List{
   // 要素が逆に並んだリストを返す関数
   def reverse[A](l: List[A]): List[A] = foldLeft(l, List[A]())((xs, x) => Cons(x, xs))
   // List[A]がNilだとダメ
+
+  // exercise3.14
+  // リストの末尾に他のリストを付け加える関数append
+  def append[A](l: List[A], a: List[A]): List[A] = foldRight(l, a)((x,xs) => Cons(x,xs))
+
+  // exercise3.15
+  // 複数のリストからなるリストを1つのリストに結合する関数
+  def concat[A](l: List[List[A]]): List[A] = foldRight(l, Nil: List[A])(append)
+
+  // exercise3.16
+  // リストの各値に+1したリストを返す関数
+  def addone(l :List[Int]): List[Int] = foldRight(l, List[Int]())((x, xs) => Cons(x+1, xs))
+
+  // exercise3.17
+  // Doubleのリストの各値をStringに変換した関数
+  def doubleToString(l: List[Double]): List[String] =
+    foldRight(l, List[String]())((x, xs) => Cons(x.toString, xs))
 }
 

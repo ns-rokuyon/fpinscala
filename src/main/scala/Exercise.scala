@@ -75,5 +75,16 @@ object Exercise {
     // 3.12
     println(chapter3.List.reverse(chapter3.List(1,2,3,4,5,6,7,8,9,10)))
 
+    // 3.14
+    println(chapter3.List.append(chapter3.List(1,2,3,4,5,6,7,8,9,10),chapter3.List(11,12)))
+
+    // 3.15
+    println(chapter3.List.concat(chapter3.List(chapter3.List(1,2,3,4,5), chapter3.List(6,7,8,9,10))))
+
+    // 3.16
+    println(chapter3.List.addone(chapter3.List(1,2,3,4)))
+
+    // 3.17
+    println(chapter3.List.doubleToString(chapter3.List(1.1,2.2,3.3,4.4)))
   }
 }
