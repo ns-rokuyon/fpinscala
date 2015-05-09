@@ -123,5 +123,40 @@ object List{
   // Doubleのリストの各値をStringに変換した関数
   def doubleToString(l: List[Double]): List[String] =
     foldRight(l, List[String]())((x, xs) => Cons(x.toString, xs))
+
+  // exercise3.18
+  // リストの各要素を変更しリストの構造をそのまま保つ総称関数map
+  def map[A,B](as: List[A])(f : A => B): List[B] = foldRight(as, List[B]())((h, t) => Cons(f(h), t))
+
+  // exercise3.19
+  // 述語が満たされるまでリストから要素を削除する関数filter
+  // この関数を使ってList[Int]から奇数をすべて削除せよ
+  // (述語が満たされるまで...は誤植?)
+  def filter[A](as: List[A])(f: A => Boolean): List[A] =
+    foldRight(as, List[A]())((h, t) => if(f(h)) Cons(h, t) else t)
+
+  // exercise3.20
+  // flatMap
+  def flatMap[A,B](as: List[A])(f: A => List[B]): List[B] = concat(map(as)(f))
+
+  // exercise3.21
+  // flatMapを使ってfilterを実装せよ
+  def filter2[A](as: List[A])(f: A => Boolean): List[A] = flatMap(as)(a  => if (f(a)) List(a) else Nil)
+
+  // exercise3.22
+  // リストを2つ受け取り対応する要素同士を足しあわせて新しいリストを生成する関数
+  def add(xlist: List[Int], ylist: List[Int]): List[Int] = (xlist, ylist) match {
+    case (Nil, _) => Nil
+    case (_, Nil) => Nil
+    case (Cons(x, xs), Cons(y, ys)) => Cons(x + y, add(xs, ys))
+  }
+
+  // exercise3.23
+  // 3.22の一般化
+  def zipWith[A,B,C](xlist: List[A], ylist: List[B])(f: (A, B) => C): List[C] = (xlist, ylist) match {
+    case (Nil, _) => Nil
+    case (_, Nil) => Nil
+    case (Cons(x, xs), Cons(y, ys)) => Cons(f(x, y), zipWith(xs, ys)(f))
+  }
 }
 

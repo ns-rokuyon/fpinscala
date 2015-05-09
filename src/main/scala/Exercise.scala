@@ -86,5 +86,23 @@ object Exercise {
 
     // 3.17
     println(chapter3.List.doubleToString(chapter3.List(1.1,2.2,3.3,4.4)))
+
+    // 3.18
+    println(chapter3.List.map(chapter3.List(1,2,3,4))(plus10))
+
+    // 3.19
+    println(chapter3.List.filter(chapter3.List(1,2,3,4,5,6,7,8,9,10))((x: Int) => if (x % 2 == 0) true else false))
+
+    // 3.20
+    println(chapter3.List.flatMap(chapter3.List(1,2,3))(i => chapter3.List(i,i)))
+
+    // 3.21
+    println(chapter3.List.filter2(chapter3.List(1,2,3,4,5,6,7,8,9,10))((x: Int) => if (x % 2 == 0) true else false))
+
+    // 3.22
+    println(chapter3.List.add(chapter3.List(1,2,3), chapter3.List(4,5,6)))
+
+    // 3.23
+    println(chapter3.List.zipWith(chapter3.List(1,2,3), chapter3.List(4,5,6))((x, y) => x - y))
   }
 }
