@@ -104,5 +104,16 @@ object Exercise {
 
     // 3.23
     println(chapter3.List.zipWith(chapter3.List(1,2,3), chapter3.List(4,5,6))((x, y) => x - y))
+
+
+    // 3.25
+    println(
+      chapter3.Tree.size(
+        chapter3.Branch(
+          chapter3.Branch(chapter3.Leaf(1), chapter3.Leaf(2)),
+          chapter3.Branch(chapter3.Leaf(3), chapter3.Leaf(4))
+        )
+      )
+    )
   }
 }

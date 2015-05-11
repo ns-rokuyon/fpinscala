@@ -159,4 +159,16 @@ object List{
     case (Cons(x, xs), Cons(y, ys)) => Cons(f(x, y), zipWith(xs, ys)(f))
   }
 }
+sealed trait Tree[+A]
+case class Leaf[A](value: A) extends Tree[A]
+case class Branch[A](left: Tree[A], right: Tree[A]) extends Tree[A]
+
+object Tree {
+  // exercise3.25
+  // 2分木のノードの数を数える関数size
+  def size[A](t: Tree[A]): Int = t match {
+    case Leaf(a) => 1
+    case Branch(l, r) => 1 + size(l) + size(r)
+  }
+}
 
