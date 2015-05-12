@@ -170,5 +170,29 @@ object Tree {
     case Leaf(a) => 1
     case Branch(l, r) => 1 + size(l) + size(r)
   }
+
+  // exercise3.26
+  // Tree[Int]の最大要素を求める関数maximum
+  def maximum(t: Tree[Int]): Int = t match {
+    case Leaf(a) => a
+    case Branch(l, r) => maximum(l) max maximum(r)
+  }
+
+  // exercise3.27
+  // ルートからLeafまでの最長パスを返す関数depth
+  def depth[A](t: Tree[A]): Int = {
+    def loop(t: Tree[A], d: Int): Int = t match {
+      case Leaf(a) => d
+      case Branch(l, r) => loop(l, d + 1) max loop(r, d + 1)
+    }
+    loop(t, 0)
+  }
+
+  // exercise3.28
+  // Leafの各要素に特定の関数を作用させる関数map
+  def map[A,B](t: Tree[A])(f: A => B): Tree[B] = t match {
+    case Leaf(a) => Leaf(f(a))
+    case Branch(l, r) => Branch(map(l)(f), map(r)(f))
+  }
 }
 
