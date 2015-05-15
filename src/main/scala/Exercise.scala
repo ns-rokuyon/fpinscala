@@ -153,5 +153,40 @@ object Exercise {
         )
       )(_ * 100)
     )
+
+    // 3.29
+    println(
+      chapter3.Tree.size2(
+        chapter3.Branch(
+          chapter3.Branch(chapter3.Leaf(1), chapter3.Leaf(2)),
+          chapter3.Branch(chapter3.Leaf(3), chapter3.Leaf(4))
+        )
+      )
+    )
+    println(
+      chapter3.Tree.maximum2(
+        chapter3.Branch(
+          chapter3.Branch(chapter3.Leaf(1), chapter3.Leaf(20)),
+          chapter3.Branch(chapter3.Leaf(100), chapter3.Leaf(50))
+        )
+      )
+    )
+    println(
+      chapter3.Tree.depth2(
+        chapter3.Branch(
+          chapter3.Branch(chapter3.Leaf(1), chapter3.Leaf(2)),
+          chapter3.Branch(chapter3.Branch(chapter3.Leaf(3), chapter3.Leaf(5)), chapter3.Leaf(4))
+        )
+      )
+    )
+    println(
+      chapter3.Tree.map2(
+        chapter3.Branch(
+          chapter3.Branch(chapter3.Leaf(1), chapter3.Leaf(2)),
+          chapter3.Branch(chapter3.Leaf(3), chapter3.Leaf(4))
+        )
+      )(_ * 100)
+    )
+
   }
 }
