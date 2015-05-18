@@ -3,6 +3,7 @@
  */
 import exercises.chapter2.GettingStarted
 import exercises.chapter3
+import exercises.chapter4
 
 object Exercise {
   def main(args: Array[String]): Unit ={
@@ -187,6 +188,16 @@ object Exercise {
         )
       )(_ * 100)
     )
+
+    // 4.1
+    val o1 = chapter4.None
+    val o2 = chapter4.Some(10)
+
+    println(o1.map((x: Int) => x + 1))
+    println(o2.map((x: Int) => x + 1))
+
+    println(o1.getOrElse(100))
+    println(o2.getOrElse(100))
 
   }
 }
