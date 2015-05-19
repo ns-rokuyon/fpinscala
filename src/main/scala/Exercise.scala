@@ -199,5 +199,7 @@ object Exercise {
     println(o1.getOrElse(100))
     println(o2.getOrElse(100))
 
+    // 4.2
+    println(chapter4.Option.variance(List(1,2,3,4,5)))
   }
 }

@@ -5,7 +5,7 @@ package exercises.chapter4
  */
 sealed trait Option[+A] {
 
-  // Exercise4.1
+  // exercise4.1
   // Optionを使ってmap,flatMap,getOrElse,orElse,filterを実装
   def map[B](f: A => B): Option[B] = this match {
     case None => None
@@ -30,6 +30,19 @@ sealed trait Option[+A] {
   def filter(f: A => Boolean): Option[A] = this match {
     case None => None
     case Some(x) => if (f(x)) this else None
+  }
+}
+
+object Option {
+  def mean(xs: Seq[Double]): Option[Double] = {
+    if (xs.isEmpty) None
+    else Some(xs.sum / xs.length)
+  }
+
+  // exercise4.2
+  // flatMapをベースに分散を返す関数variance
+  def variance(xs: Seq[Double]): Option[Double] = {
+    mean(xs).flatMap(m => mean(xs.map(x => math.pow(x - m,2))))
   }
 }
 
