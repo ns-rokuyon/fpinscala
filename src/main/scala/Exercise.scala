@@ -201,5 +201,10 @@ object Exercise {
 
     // 4.2
     println(chapter4.Option.variance(List(1,2,3,4,5)))
+
+    // 4.3
+    val x = chapter4.Some(2)
+    val y = chapter4.Some(4)
+    println(chapter4.Option.map2(x,y)((a,b) => a + b))
   }
 }

@@ -44,6 +44,13 @@ object Option {
   def variance(xs: Seq[Double]): Option[Double] = {
     mean(xs).flatMap(m => mean(xs.map(x => math.pow(x - m,2))))
   }
+
+  // exercise4.3
+  // Option型の2つの値を結合する総称関数map2
+  // どちらかのOption値がNoneの場合は戻り値もNone
+  def map2[A,B,C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] = {
+    a.flatMap(a1 => b.map(b1 => f(a1, b1)))
+  }
 }
 
 case class Some[+A](get: A) extends Option[A]
