@@ -206,5 +206,13 @@ object Exercise {
     val x = chapter4.Some(2)
     val y = chapter4.Some(4)
     println(chapter4.Option.map2(x,y)((a,b) => a + b))
+
+    // 4.4
+    val z = chapter4.Some(6)
+    println(chapter4.Option.sequence(List(x,y,z)))
+    println(chapter4.Option.sequence(List(x,y,chapter4.None,z)))
+
+    // 4.5
+    println(chapter4.Option.traverse(List("1","2","3"))(s => chapter4.Option.Try(s.toInt)))
   }
 }
