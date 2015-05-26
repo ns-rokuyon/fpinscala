@@ -214,5 +214,18 @@ object Exercise {
 
     // 4.5
     println(chapter4.Option.traverse(List("1","2","3"))(s => chapter4.Option.Try(s.toInt)))
+
+    // 4.6
+    def insuranceRateQuote(age: Int, numberOfSpeedingTickets: Int): Double = {
+      age * numberOfSpeedingTickets
+    }
+    def parseInsuranceRateQuote(age: String, numberOfSpeedingTickets: String): chapter4.Either[Exception, Double] =
+      for {
+        a <- chapter4.Either.Try { age.toInt }
+        tickets <- chapter4.Either.Try { numberOfSpeedingTickets.toInt }
+      } yield insuranceRateQuote(a, tickets)
+
+    println(parseInsuranceRateQuote("1", "3"))
+    println(parseInsuranceRateQuote("hoge", "3"))
   }
 }
