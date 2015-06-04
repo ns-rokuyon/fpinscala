@@ -4,6 +4,7 @@
 import exercises.chapter2.GettingStarted
 import exercises.chapter3
 import exercises.chapter4
+import exercises.chapter5
 
 object Exercise {
   def main(args: Array[String]): Unit ={
@@ -227,5 +228,12 @@ object Exercise {
 
     println(parseInsuranceRateQuote("1", "3"))
     println(parseInsuranceRateQuote("hoge", "3"))
+
+    // 5.1
+    val offset = 10
+    val stream = chapter5.Stream.cons(() => offset+1,
+      chapter5.Stream.cons(() => offset+2, chapter5.Stream.empty))
+    val sl = stream.toList
+    println(sl)
   }
 }

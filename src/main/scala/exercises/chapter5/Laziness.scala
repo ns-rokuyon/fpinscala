@@ -3,7 +3,14 @@ package exercises.chapter5
 /**
  * Created by ns64 on 2015/06/03.
  */
-trait Stream[+A]
+trait Stream[+A] {
+  // exercise5.1
+  // StreamをListに変換し,強制的にStreamを評価する関数toList
+  def toList: List[A] = this match {
+    case Empty => Nil
+    case Cons(h, t) => h()::t().toList
+  }
+}
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
 
