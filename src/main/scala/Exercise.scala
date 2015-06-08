@@ -232,8 +232,13 @@ object Exercise {
     // 5.1
     val offset = 10
     val stream = chapter5.Stream.cons(() => offset+1,
-      chapter5.Stream.cons(() => offset+2, chapter5.Stream.empty))
+      chapter5.Stream.cons(() => offset+2,
+        chapter5.Stream.cons(() => offset+3, chapter5.Stream.empty)))
     val sl = stream.toList
     println(sl)
+
+    // 5.2
+    println(stream.take(2))
+    println(stream.drop(1))
   }
 }

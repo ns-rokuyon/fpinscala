@@ -10,6 +10,20 @@ trait Stream[+A] {
     case Empty => Nil
     case Cons(h, t) => h()::t().toList
   }
+
+  // exercise5.2
+  // Streamの先頭からn個の要素を取り出す関数take(n)と
+  // 先頭からn個の要素をスキップする関数drop(n)
+  def take(n: Int): Stream[A] = this match {
+    case Empty => Stream.empty
+    case Cons(h, t) if n > 1 => Stream.cons(h(), t().take(n - 1))
+    case Cons(h, t) if n == 1 => Stream.cons(h(), Stream.empty)
+  }
+
+  def drop(n: Int): Stream[A] = this match {
+    case Cons(h, t) if n > 0 => t().drop(n - 1)
+    case _ => this
+  }
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
