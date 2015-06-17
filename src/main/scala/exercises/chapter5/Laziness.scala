@@ -24,6 +24,13 @@ trait Stream[+A] {
     case Cons(h, t) if n > 0 => t().drop(n - 1)
     case _ => this
   }
+
+  // exercise5.3
+  // Streamの先頭から指定された述語とマッチする要素をすべて取り出すtakeWhile関数
+  def takeWhile(p: A => Boolean): Stream[A] = this match {
+    case Cons(h, t) if p(h()) => Stream.cons(h(), t().takeWhile(p))
+    case _ => Stream.empty
+  }
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]

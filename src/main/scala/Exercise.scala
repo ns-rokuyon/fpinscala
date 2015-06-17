@@ -240,5 +240,10 @@ object Exercise {
     // 5.2
     println(stream.take(2))
     println(stream.drop(1))
+
+    // 5.3
+    def p(a: () => Int): Boolean = a() <= 12
+    val pp = p _
+    println(stream.takeWhile(pp).toList)
   }
 }
