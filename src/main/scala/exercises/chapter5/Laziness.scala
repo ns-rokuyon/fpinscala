@@ -4,6 +4,10 @@ package exercises.chapter5
  * Created by ns64 on 2015/06/03.
  */
 trait Stream[+A] {
+  def foldRight[B](z: => B)(f: (A, => B) => B): B = this match {
+    case Cons(h,t) => f(h(), t().foldRight(z)(f))
+    case _ => z
+  }
   // exercise5.1
   // StreamをListに変換し,強制的にStreamを評価する関数toList
   def toList: List[A] = this match {
@@ -31,6 +35,19 @@ trait Stream[+A] {
     case Cons(h, t) if p(h()) => Stream.cons(h(), t().takeWhile(p))
     case _ => Stream.empty
   }
+
+  // exercise5.4
+  // Streamの要素のうち指定された述語とマッチするものをすべてチェックするforAll
+  def forAll(p: A => Boolean): Boolean = {
+    foldRight(true)((a,b) => p(a) && b)
+  }
+
+  // exercise5.5
+  // foldRightを使ってtakeWhileを実装
+  def takeWhile2(p: A => Boolean): Stream[A] = {
+    foldRight(Stream.empty[A])((a,b) => if (p(a)) Stream.cons(a,b) else Stream.empty)
+  }
+
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]

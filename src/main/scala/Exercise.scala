@@ -245,5 +245,14 @@ object Exercise {
     def p(a: () => Int): Boolean = a() <= 12
     val pp = p _
     println(stream.takeWhile(pp).toList)
+
+    // 5.4
+    def less15(a: () => Int): Boolean = a() <= 15
+    val p15 = less15 _
+    println(stream.forAll(p15))
+
+    // 5.5
+    println(stream.takeWhile2(pp).toList)
+
   }
 }
