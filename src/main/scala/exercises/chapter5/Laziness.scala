@@ -79,4 +79,27 @@ object Stream {
   def empty[A]: Stream[A] = Empty
 
   def apply[A](as: A*): Stream[A] = if (as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
+
+  def ones: Stream[Int] = Stream.cons(1, ones)
+
+  // exercise5.8
+  // onesを一般化し指定された値の無限ストリームを生成するconstant
+  def constant[A](a: A): Stream[A] = {
+    Stream.cons(a, constant(a))
+  }
+
+  // exercise5.9
+  // nで始まってn+1, n+2と続く無限ストリームを生成
+  def from(n: Int): Stream[Int] = {
+    Stream.cons(n, from(n+1))
+  }
+
+  // exercise5.10
+  // フィボナッチ数列の無限ストリーム
+  def fibs: Stream[Int] = {
+    def loop(a: Int, b: Int): Stream[Int] = {
+      Stream.cons(a, loop(b, a+b))
+    }
+    loop(0,1)
+  }
 }

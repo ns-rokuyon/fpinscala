@@ -254,5 +254,8 @@ object Exercise {
     // 5.5
     println(stream.takeWhile2(pp).toList)
 
+    // 5.10
+    println(chapter5.Stream.fibs.take(10).toList)
+
   }
 }
