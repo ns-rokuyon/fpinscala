@@ -102,4 +102,17 @@ object Stream {
     }
     loop(0,1)
   }
+
+  // exercise5.11
+  // 汎用的なストリーム生成関数unfold
+  def unfold[A,S](z: S)(f: S => Option[(A,S)]): Stream[A] = {
+    f(z) match {
+      case Some((x,y)) => Stream.cons(x, unfold(y)(f))
+      case None => Stream.empty
+    }
+  }
+
+  // exercise5.12
+  // unfoldを使ってfibs,from,constant,ones
+  def ones2: Stream[Int] = unfold(1)(s => Some((1,1)))
 }
