@@ -115,4 +115,10 @@ object Stream {
   // exercise5.12
   // unfoldを使ってfibs,from,constant,ones
   def ones2: Stream[Int] = unfold(1)(s => Some((1,1)))
+
+  def from2(n: Int): Stream[Int] = unfold(n)(s => Some((s,s+1)))
+
+  def constant2[A](a: A): Stream[A] = unfold(a)(s => Some((s,s)))
+
+  def fibs2: Stream[Int] = unfold((0,1))(s => Some((s._1, (s._2, s._1 + s._2))))
 }

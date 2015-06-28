@@ -257,5 +257,8 @@ object Exercise {
     // 5.10
     println(chapter5.Stream.fibs.take(10).toList)
 
+    // 5.12
+    println(chapter5.Stream.fibs2.take(10).toList)
+
   }
 }
