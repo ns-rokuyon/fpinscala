@@ -66,6 +66,32 @@ trait Stream[+A] {
     foldRight(Stream.empty[B])((a,b) => f(a).append(b))
   }
 
+  // exercise5.13
+  // unfoldを使ってmap,take,takeWhile,zipWith,zipAllを実装
+  def map2[B](f: A => B): Stream[B] = {
+    Stream.unfold(this) {
+      case Cons(h,t) => Some((f(h()) ,t()))
+      case _ => None
+    }
+  }
+
+  def take2(n: Int): Stream[A] = Stream.unfold((n,this)) {
+    case ((1, Cons(h,t))) => Some((h(), (0, Stream.empty)))
+    case ((x, Cons(h,t))) if n > 1 => Some((h(), (x-1, t())))
+    case _ => None
+  }
+
+  def takeWhile3(p: A => Boolean): Stream[A] = Stream.unfold(this) {
+    case Cons(h,t) if p(h()) => Some((h(), t()))
+    case _ => None
+  }
+
+  def zipWith[B,C](s: Stream[B])(f: (A,B) => C): Stream[C] = {
+    Stream.unfold((this,s)) {
+      case (Cons(h1,t1), Cons(h2,t2)) => Some((f(h1(),h2()),(t1(),t2())))
+      case _ => None
+    }
+  }
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
