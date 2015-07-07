@@ -22,4 +22,11 @@ object RNG {
     val (n, r) = rng.nextInt
     (if (n < 0) -(n + 1) else n, r)
   }
+
+  // exercise6.2
+  // 0-1のDouble型の値を生成する関数
+  def double(rng: RNG): (Double, RNG) = {
+    val (n, r) = rng.nextInt
+    (n / (Int.MaxValue.toDouble + 1), r)
+  }
 }
