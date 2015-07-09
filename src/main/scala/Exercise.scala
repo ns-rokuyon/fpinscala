@@ -5,6 +5,8 @@ import exercises.chapter2.GettingStarted
 import exercises.chapter3
 import exercises.chapter4
 import exercises.chapter5
+import exercises.chapter6
+import exercises.chapter6.RNG
 
 object Exercise {
   def main(args: Array[String]): Unit ={
@@ -259,6 +261,12 @@ object Exercise {
 
     // 5.12
     println(chapter5.Stream.fibs2.take(10).toList)
+
+    // 6.3
+    val rng = new chapter6.SimpleRNG(100)
+    println(chapter6.RNG.intDouble(rng))
+    println(chapter6.RNG.doubleInt(rng))
+    println(chapter6.RNG.double3(rng))
 
   }
 }
