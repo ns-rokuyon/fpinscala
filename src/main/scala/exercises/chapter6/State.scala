@@ -48,4 +48,15 @@ object RNG {
     val (d3, r3) = RNG.double(r2)
     ((d1, d2, d3), r3)
   }
+
+  // exercise6.4
+  // ランダムな整数のリストを生成する関数
+  def ints(count: Int)(rng: RNG): (List[Int], RNG) = count match {
+    case 0 => (Nil, rng)
+    case _ => {
+      val (x1, r1) = rng.nextInt
+      val (x2, r2) = ints(count - 1)(r1)
+      (x1::x2, r2)
+    }
+  }
 }

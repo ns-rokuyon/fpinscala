@@ -268,5 +268,7 @@ object Exercise {
     println(chapter6.RNG.doubleInt(rng))
     println(chapter6.RNG.double3(rng))
 
+    // 6.4
+    println(chapter6.RNG.ints(10)(rng))
   }
 }
