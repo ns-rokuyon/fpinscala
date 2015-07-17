@@ -84,4 +84,20 @@ object RNG {
       (f(a,b), rng3)
     }
   }
+
+  // exercise6.7
+  // flatMapを実装してnonNegativeLessThanを実装
+  def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] = {
+    rng => {
+      val (a, rng2) = f(rng)
+      g(a)(rng2)
+    }
+  }
+
+  def nonNegativeLessThan(n: Int): Rand[Int] = {
+    flatMap(nonNegativeInt)(x => {
+      val mod = x % n
+      if (x + (n - 1) - mod >= 0) unit(mod) else nonNegativeLessThan(n)
+    })
+  }
 }
